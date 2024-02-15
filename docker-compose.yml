@@ -76,6 +76,7 @@ services:
     depends_on:
       - qbittorrent
       - pihole
+      - plex
 
   dhcphelper:
     build: ./dhcp-helper
