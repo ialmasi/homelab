@@ -57,11 +57,13 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      - PLEX_CLAIM= #optional
+      - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - ./plex:/config
       - local-share:/tv
       - local-share:/movies
+    networks:
+      - app
     restart: unless-stopped
 
   nginx:
