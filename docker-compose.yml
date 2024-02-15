@@ -1,6 +1,5 @@
 version: "3.8"
 services:
-volumes:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
@@ -12,7 +11,7 @@ volumes:
       - "80:80/tcp"
     environment:
       TZ: 'America/Chicago'
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      WEBPASSWORD: ${PITT_PIHOLE_PASSWORD}
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole:/etc/pihole'
@@ -21,3 +20,11 @@ volumes:
     cap_add:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
+
+volumes:
+  local-share:
+    driver: local
+    driver_opts: 
+      type: 'none'
+      o: 'bind'
+      device: "${PITT_SHARED_FOLDER}"
