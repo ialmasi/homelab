@@ -6,7 +6,6 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "80:80/tcp"
     volumes:
       - './pihole/etc-pihole:/etc/pihole'
       - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
@@ -51,7 +50,9 @@ services:
     image: nginx:latest
     container_name: nginx
     volumes:
-      - ./nginx/etc-nginx/:/etc/nginx/
+      - ./nginx/etc-nginx/:/etc/nginx/conf.d/
+    ports:  
+      - "80:80/tcp"      
 
   dhcphelper:
     build: ./dhcp-helper
