@@ -68,6 +68,15 @@ services:
       - app
     restart: unless-stopped
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ./uptime-kuma:/app/data
+    networks:
+      - app
+    restart: unless-stopped
+
   nginx:
     image: nginx:latest
     container_name: nginx
