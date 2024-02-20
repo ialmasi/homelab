@@ -96,6 +96,7 @@ services:
 
   dhcphelper:
     build: ./dhcp-helper
+    container_name: dhcphelper
     restart: unless-stopped
     network_mode: "host"
     command: -s 172.31.0.100
