@@ -15,7 +15,7 @@ services:
       - dhcphelper
     dns:
       - 127.0.0.1
-      - 1.1.1.1
+      - 1.1.1.3
     environment:
       TZ: 'Europe/Budapest'
       WEBPASSWORD: ${PITT_PIHOLE_PASSWORD}
@@ -92,6 +92,7 @@ services:
       - qbittorrent
       - pihole
       - plex
+      - uptime-kuma
 
   dhcphelper:
     build: ./dhcp-helper
