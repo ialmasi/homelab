@@ -104,11 +104,18 @@ services:
       - NET_ADMIN
 
   speedtest:
+    container_name: speedtest
+    image: henrywhitaker3/speedtest-tracker
+    volumes:
+      - ./speedtest-config:/config
+    environment:
+      - OOKLA_EULA_GDPR=true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: "200k"
     restart: unless-stopped
-    container_name: openspeedtest
-    networks:
-      - app
-    image: openspeedtest/latest
 
 networks:
   backend:
