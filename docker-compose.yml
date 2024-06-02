@@ -108,7 +108,7 @@ services:
     container_name: openspeedtest
     networks:
       - app
-  image: openspeedtest/latest
+    image: openspeedtest/latest
 
 networks:
   backend:
