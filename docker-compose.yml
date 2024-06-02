@@ -103,6 +103,13 @@ services:
     cap_add:
       - NET_ADMIN
 
+  speedtest:
+    restart: unless-stopped
+    container_name: openspeedtest
+    networks:
+      - app
+  image: openspeedtest/latest
+
 networks:
   backend:
     ipam:
