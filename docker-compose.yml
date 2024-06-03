@@ -1,33 +1,12 @@
 version: "3.8"
 services:
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
     volumes:
-      - './pihole/etc-pihole:/etc/pihole'
-      - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
-    cap_add:
-      - NET_ADMIN
-    depends_on:
-      - dhcphelper
-    dns:
-      - 127.0.0.1
-      - 1.1.1.3
-    environment:
-      TZ: 'Europe/Budapest'
-      WEBPASSWORD: ${PITT_PIHOLE_PASSWORD}
-      ServerIP: 192.168.86.100
-      DNS1: 1.1.1.3
-      DNS2: 1.0.0.3
-      VIRTUAL_HOST: pi.hole
-      DNSMASQ_LISTENING: all
-    networks:
-      backend:
-        ipv4_address: '172.31.0.100'
-      app: {}
+      - ./adguard/conf:/opt/adguardhome/conf
+      - ./adguard/work:/opt/adguardhome/work
+    network-mode: host
     restart: unless-stopped
 
   qbittorrent:
@@ -93,15 +72,6 @@ services:
       - pihole
       - plex
       - uptime-kuma
-
-  dhcphelper:
-    build: ./dhcp-helper
-    container_name: dhcphelper
-    restart: unless-stopped
-    network_mode: "host"
-    command: -s 172.31.0.100
-    cap_add:
-      - NET_ADMIN
 
   speedtest:
     container_name: speedtest
