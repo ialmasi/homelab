@@ -105,7 +105,7 @@ services:
 
   speedtest:
     container_name: speedtest
-    image: henrywhitaker3/speedtest-tracker:arm
+    image: henrywhitaker3/speedtest-tracker:latest-arm
     volumes:
       - ./speedtest-config:/config
     environment:
