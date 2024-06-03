@@ -69,9 +69,10 @@ services:
     restart: unless-stopped
     depends_on:
       - qbittorrent
-      - pihole
+      - adguardhome
       - plex
       - uptime-kuma
+      - speedtest
 
   speedtest:
     container_name: speedtest
