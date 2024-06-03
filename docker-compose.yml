@@ -6,7 +6,7 @@ services:
     volumes:
       - ./adguard/conf:/opt/adguardhome/conf
       - ./adguard/work:/opt/adguardhome/work
-    network-mode: host
+    network_mode: host
     restart: unless-stopped
 
   qbittorrent:
