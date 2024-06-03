@@ -110,6 +110,8 @@ services:
       - ./speedtest-config:/config
     environment:
       - OOKLA_EULA_GDPR=true
+    networks:
+      - app
     logging:
       driver: "json-file"
       options:
